@@ -13,7 +13,7 @@ from PIL import Image
 def load_the_model() :
      model = densenet201(pretrained=False)
      model.classifier = nn.Sequential(nn.Linear(1920, 512),nn.ReLU(),nn.Dropout(0.4),nn.Linear(512,7))
-     model.load_state_dict(torch.load("D:/Courses/weights.pth"))
+     model.load_state_dict(torch.load("weights.pth"))
      model.eval()
      return model
  
@@ -34,7 +34,7 @@ def predicted_the_image(model,image) :
     classes = ["Cas","Cos","Gum","MC","OC","OLP","OT"]    
     st.write(f"Predicted Class: {classes[predicted_class]}")
     st.bar_chart(probabilities.numpy()) 
-
+st.image("dental-technology.jpeg")
 st.title("Teeth Classification using AI")
 st.subheader("model used is DenseNet-201 with total train accuracy 85 and validation accuracy 70, more epochs will increase the accuracy up to 95")
 st.write("can be modified later because this is initial version of The web app")
